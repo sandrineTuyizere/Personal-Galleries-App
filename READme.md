@@ -27,3 +27,13 @@ the admin is the only one to add any image and user will view and search only.
 * javascript
 * css
 * Postgres SQLALchemy
+
+# Behavior Driven Development (BDD)
+
+* Create structure etc..
+* Create 4 classs are Photographer,Image, Category, Location
+* Create test file to test all your method
+* Create the manage file for used to run all your test
+* Create Start.sh to help you to run and open the server
+* Create a config file to link your project qith the database or any url link
+
