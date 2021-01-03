@@ -17,3 +17,13 @@ the admin is the only one to add any image and user will view and search only.
 * Search for different categories
 * Copy a link to the photo to share with my friends.
 * View photos based on the location they were taken.
+
+# Technology used
+* Python3.6
+* Django
+* terminal
+* ubuntu window
+* html
+* javascript
+* css
+* Postgres SQLALchemy
