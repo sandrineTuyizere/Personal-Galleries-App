@@ -1,0 +1,109 @@
+{% extends 'all-photo/base.html' %}
+{% block content %}
+<body>
+<h4>PHOTO GALLERY</h4>
+<!-- from bootstrap website -->
+<!-- <div class="row">
+    <div class="col-4">
+      <div class="list-group" id="list-tab" role="tablist">
+        <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">GALLERY</a>
+        <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile" href="/location/2">Portrait</a>
+        <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="messages" href="/location/1">Fashion</a>
+        <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="settings">Architectural</a>
+      </div>
+    </div>
+    <div class="col-8">
+      <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list" href="/location/1" ></div>
+        <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list" href="/location/2"></div>
+        <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">...</div>
+        <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">...</div>
+      </div>
+    </div>
+  </div> -->
+  <!-- end  -->
+{% for photo_item in images %}
+<div  class="row">
+        <div class="col-md-9  ">
+<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+    <img src="{{photo_item.image.url}}" data-toggle="modal" class="img-responsive" alt="Image" style="max-width: 500px; " class="image"data-toggle="modal" data-target="#{{photo_item.id}}">
+</div>
+</div>
+</div>
+{% empty %}
+<!-- <div class="row">
+    <h2 class="text-center">There no Images yet</h2>
+</div> -->
+{%  endfor %}
+  <!-- modal from bootstrap website -->
+            <!-- Button trigger modal -->
+            {% for photo_item in images %}
+<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">Details</button> -->
+      
+      <!-- Modal -->
+      <div class="modal fade" id="{{photo_item.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalCenterTitle">{{photo_item.title}}</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <img src="{{photo_item.image.url}}" id="{{photo_item.id}}" class="img-fluid"  data-target="" class="img-responsive" style="width: 100%;max-width: 100%;">
+              <!-- <img src="{{photo_item.image.url}}" class="img-fluid" data-toggle="modal" data-target="#exampleModal{{image.id}}" style="width: 100%;"> -->
+     
+              
+              <p>{{photo_item.description}}</p><label for="location">Location: {{photo_item.location}}</label>
+            </div>
+            <div class="modal-footer">
+                    <!-- <input class="form-control" type="text" value="http://127.0.0.1:8000{{photo_item.image.url}}" id="link">
+                    <a onclick="copyLink({{photo_item.id}})"><button type="button" class="btn btn-outline-secondary my-2 my-sm-0 link-btn">Copy
+                        image Link</button></a> -->
+            <input class="form-control" type="text" value="http:127.0.0.8000{{photo_item.image.url}}" id="link">
+              <button type="button" class="btn btn-success" data-dismiss="modal" onclick=" myFunction()">copyLink</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</body>
+<style>
+  .modal-content{
+    margin: auto;
+    display: block;
+    width:80%;
+    max-width: 700px;
+  }
+    .image{
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12),0 1px 2px rgba(0, 0, 0, 0.24);
+        /* transition: all 0.3s ease 0s; */
+        cursor:pointer;
+        border-radius: 10px;
+        width:100% !important;
+    }
+    .image:hover{
+        box-shadow: 0 1px 328px rgba(0, 0, 0, 0.25),0 1px 2px rgba(0, 0, 0, 0.22);
+        /* transition:  .5s ease ; */
+        opacity: 0.7;
+        border-radius: 10px;
+        overflow: hidden;
+        transform:translate(-7px);
+    
+    }
+</style>  
+<script>
+    function myFunction(){
+        var copyText=document.getElementById("link");
+        copyText.select();
+        copyText.setSelectionRange(0, 999999)
+        document.execCommand("copy");
+        alert("copied link:" + copyText.value);
+    }
+</script>  
+{%  endfor %}
+
+{% endblock %}
